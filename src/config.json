@@ -1,5 +1,6 @@
 {
     "protocol": "http://",
-    "api_url": "54.214.89.142",
+    "api_url_alt": "54.214.89.142",
+    "api_url": "http://localhost:3000",
     "port": "3000"
 }

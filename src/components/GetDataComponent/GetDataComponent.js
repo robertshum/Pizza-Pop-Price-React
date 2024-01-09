@@ -3,22 +3,16 @@ import './GetDataComponent.css';
 import config from '../../config.json';
 
 const defaultSearchValue = encodeURIComponent('Pillsbury Pizza Pops');
-//const API_URL = config.protocol + config.api_url + ":" + config.port;
-const API_URL = 'http://localhost:3000';
 let encodedSearchValue = defaultSearchValue;
 let fetchUrls = generateFetchUrls(encodedSearchValue);
 
 function generateFetchUrls(encodedSearchValue) {
     return {
-        'Save-on-Foods': `${API_URL}/GetSaveOnFoodsData?search=${encodedSearchValue}`,
-        'Superstore': `${API_URL}/GetSuperstoreData?search=${encodedSearchValue}`,
-        'Pricesmart': `${API_URL}/GetPricesmartData?search=${encodedSearchValue}`,
-        'Your Independent Grocer': `${API_URL}/GetYourIndependentGrocerData?search=${encodedSearchValue}`
+        'Save-on-Foods': `${config.api_url}/GetSaveOnFoodsData?search=${encodedSearchValue}`,
+        'Superstore': `${config.api_url}/GetSuperstoreData?search=${encodedSearchValue}`,
+        'Pricesmart': `${config.api_url}/GetPricesmartData?search=${encodedSearchValue}`,
+        'Your Independent Grocer': `${config.api_url}/GetYourIndependentGrocerData?search=${encodedSearchValue}`
     }
-    // return {
-    //     'Save-on-Foods': `${API_URL}/GetSaveOnFoodsData?search=${encodedSearchValue}`,
-    //     'Pricesmart': `${API_URL}/GetPricesmartData?search=${encodedSearchValue}`
-    // }
 };
 
 // function generateFetchUrls(encodedSearchValue) {
