@@ -1,19 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './GetDataComponent.css';
 import config from '../../config.json';
 
-const defaultSearchValue = encodeURIComponent('Pillsbury Pizza Pops');
-let encodedSearchValue = defaultSearchValue;
-let fetchUrls = generateFetchUrls(encodedSearchValue);
 
-function generateFetchUrls(encodedSearchValue) {
-    return {
-        'Save-on-Foods': `${config.api_url}/GetSaveOnFoodsData?search=${encodedSearchValue}`,
-        'Superstore': `${config.api_url}/GetSuperstoreData?search=${encodedSearchValue}`,
-        'Pricesmart': `${config.api_url}/GetPricesmartData?search=${encodedSearchValue}`,
-        'Your Independent Grocer': `${config.api_url}/GetYourIndependentGrocerData?search=${encodedSearchValue}`
-    }
-};
 
 // function generateFetchUrls(encodedSearchValue) {
 //     return {
@@ -22,7 +11,25 @@ function generateFetchUrls(encodedSearchValue) {
 // };
 
 const GetDataComponent = ({ searchValue }) => {
-    const [data, setData] = useState([]);  // Initialize data state as an empty array
+
+  const [data, setData] = useState([]);
+  const fetchUrls = useRef(null);
+
+  // const defaultSearchValue = encodeURIComponent('Pillsbury Pizza Pops');
+  // let encodedSearchValue = defaultSearchValue;
+  // let fetchUrls = generateFetchUrls(encodedSearchValue);
+  
+  function generateFetchUrls(encodedSearchValue) {
+      return {
+          'Save-on-Foods': `${config.api_url}/GetSaveOnFoodsData?search=${encodedSearchValue}`,
+          'Superstore': `${config.api_url}/GetSuperstoreData?search=${encodedSearchValue}`,
+          'Pricesmart': `${config.api_url}/GetPricesmartData?search=${encodedSearchValue}`,
+          'Your Independent Grocer': `${config.api_url}/GetYourIndependentGrocerData?search=${encodedSearchValue}`
+      }
+  };
+
+
+
 
     // useEffect(() => {
     //     const fetchData = async () => {
@@ -53,7 +60,7 @@ const GetDataComponent = ({ searchValue }) => {
                 //force data to empty array using state hook.
                 setData([]);
                 //TODO maybe move input validation somewhere else
-                fetchUrls = searchValue === '' ? generateFetchUrls(defaultSearchValue) : generateFetchUrls(encodeURIComponent(searchValue));
+                fetchUrls.current = searchValue === '' ? generateFetchUrls(encodeURIComponent('Pillsbury Pizza Pops')) : generateFetchUrls(encodeURIComponent(searchValue));
 
                 // const fetchDataArray = await Promise.all(
                 //     Object.values(fetchUrls).map(url => fetch(url))
@@ -66,7 +73,7 @@ const GetDataComponent = ({ searchValue }) => {
 
 
                 const fetchDataArray = await Promise.all(
-                    Object.values(fetchUrls).map(url => fetch(url))
+                    Object.values(fetchUrls.current).map(url => fetch(url))
                 );
 
                 const jsonDataArray = await Promise.all(
