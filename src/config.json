@@ -1,6 +1,7 @@
 {
-    "protocol": "http://",
-    "api_url_alt": "54.214.89.142",
-    "api_url": "http://localhost:3000",
-    "port": "3000"
+  "protocol": "http://",
+  "api_url_alt": "54.214.89.142",
+  "api_url": "http://localhost:3000",
+  "port": "3000",
+  "default_search_value": "PillsburyPizzaPops"
 }
