@@ -2,22 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import './GetDataComponent.css';
 import config from '../../config.json';
 
-
-
-// function generateFetchUrls(encodedSearchValue) {
-//     return {
-//         'Superstore': `http://localhost:3000/GetSuperstoreData?search=${encodedSearchValue}`
-//     }
-// };
-
 const GetDataComponent = ({ searchValue }) => {
 
   const [data, setData] = useState([]);
   const fetchUrls = useRef(null);
-
-  // const defaultSearchValue = encodeURIComponent('Pillsbury Pizza Pops');
-  // let encodedSearchValue = defaultSearchValue;
-  // let fetchUrls = generateFetchUrls(encodedSearchValue);
 
   function generateFetchUrls(encodedSearchValue) {
     return {
@@ -134,7 +122,9 @@ const GetDataComponent = ({ searchValue }) => {
           ))}
         </div>
       ) : (
-        //Loading elements
+        // TODO move heavy CSS components into separate file.
+        // Loading Animation.
+        // They sure love using divs
         <div className="loading-container">
           <div className="loading-text">Loading...</div>
           <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
