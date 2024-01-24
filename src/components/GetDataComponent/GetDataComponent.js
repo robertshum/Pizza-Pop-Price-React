@@ -1,20 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './GetDataComponent.css';
-import config from '../../config.json';
+// import config from '../../config/config.json';
+import { generateEncodedfetchUrls } from '../../utils/util';
 
 const GetDataComponent = ({ searchValue }) => {
 
   const [data, setData] = useState([]);
   const fetchUrls = useRef(null);
-
-  function generateFetchUrls(encodedSearchValue) {
-    return {
-      'Save-on-Foods': `${config.api_url}/GetSaveOnFoodsData?search=${encodedSearchValue}`,
-      'Superstore': `${config.api_url}/GetSuperstoreData?search=${encodedSearchValue}`,
-      'Pricesmart': `${config.api_url}/GetPricesmartData?search=${encodedSearchValue}`,
-      'Your Independent Grocer': `${config.api_url}/GetYourIndependentGrocerData?search=${encodedSearchValue}`
-    };
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,9 +16,9 @@ const GetDataComponent = ({ searchValue }) => {
         //force data to empty array using state hook.
         setData([]);
 
-        //TODO maybe move input validation somewhere else
-        fetchUrls.current = searchValue === '' ? generateFetchUrls(encodeURIComponent(config.default_search_value)) : generateFetchUrls(encodeURIComponent(searchValue));
+        // fetchUrls.current = searchValue === '' ? generateFetchUrls(encodeURIComponent(config.default_search_value)) : generateFetchUrls(encodeURIComponent(searchValue));
 
+        fetchUrls.current = generateEncodedfetchUrls(searchValue);
 
         const fetchDataArray = await Promise.all(
           Object.values(fetchUrls.current).map(url => fetch(url))
