@@ -16,30 +16,6 @@ const GetDataComponent = ({ searchValue }) => {
     };
   };
 
-
-
-
-  // useEffect(() => {
-  //     const fetchData = async () => {
-  //       try {
-
-
-  //         const url = `http://localhost:3000/GetSuperstoreData?search=${encodedSearchValue}`;
-  //         //const url = 'http://localhost:3000/GetSuperstoreData?search=Pillsbury Pizza Pops';
-
-  //         console.log("url: " + url);
-  //         const response = await fetch(url);
-  //         const jsonData = await response.json();
-  //         console.log(jsonData);
-  //         setData(jsonData);
-  //       } catch (error) {
-  //         console.error('Error:', error);
-  //       }
-  //     };
-
-  //     fetchData();
-  //   }, []);
-
   useEffect(() => {
     const fetchData = async () => {
 
@@ -47,17 +23,9 @@ const GetDataComponent = ({ searchValue }) => {
 
         //force data to empty array using state hook.
         setData([]);
+
         //TODO maybe move input validation somewhere else
         fetchUrls.current = searchValue === '' ? generateFetchUrls(encodeURIComponent(config.default_search_value)) : generateFetchUrls(encodeURIComponent(searchValue));
-
-        // const fetchDataArray = await Promise.all(
-        //     Object.values(fetchUrls).map(url => fetch(url))
-        // );
-        // const jsonDataArray = await Promise.all(
-        //     fetchDataArray.map(response => response.json())
-        // );
-        // setData(jsonDataArray);
-
 
 
         const fetchDataArray = await Promise.all(
@@ -81,25 +49,14 @@ const GetDataComponent = ({ searchValue }) => {
 
         setData(filteredJsonDataArray);
 
-
-
       } catch (error) {
         console.error('Error fetching data:', error);
-      } finally {
-        //TODO call endpoint to close all browser instances
-        //await Promise.all(fetch('http://localhost:3000/closeBrowser'));
-
       }
     };
 
     fetchData();
   }, [searchValue]);
 
-  // return (
-  //     <div>
-  //         <p> Loading...</p>
-  //     </div>
-  // );
 
   return (
     <div>
