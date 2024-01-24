@@ -108,9 +108,10 @@ const GetDataComponent = ({ searchValue }) => {
           {data.map((dataArray, index) => (
             <ul className="list" key={index}>
               <div className="vendor-title">
-                {Object.keys(fetchUrls)[index]}
+                {Object.keys(fetchUrls.current)[index]}
               </div>
               {dataArray.map((item, itemIndex) => (
+                // TODO should associate the code below as another component (like an item)
                 <a className="item-container" key={itemIndex} href={item.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                   <div className="item-container-frame">
                     <div className="item-container-title">{item.title}</div>
