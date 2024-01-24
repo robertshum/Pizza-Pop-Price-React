@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import './GetDataComponent.css';
+import './VendorProducts.css';
 // import config from '../../config/config.json';
 import { generateEncodedfetchUrls } from '../../utils/util';
 

@@ -1,7 +1,7 @@
 import './App.css';
-import GetDataComponent from './components/GetDataComponent/GetDataComponent';
-import TitleBarComponent from './components/TitleBarComponent/TitleBarComponent';
-import SearchForm from './components/SearchComponent/SearchComponent';
+import GetDataComponent from './components/VendorProducts/VendorProducts';
+import TitleBarComponent from './components/TitleBar/TitleBar';
+import SearchForm from './components/SearchBox/SearchBox';
 import React, { useState } from 'react';
 
 function App() {

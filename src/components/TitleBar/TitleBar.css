@@ -1,0 +1,26 @@
+/* Title */
+/* Auto layout */
+.main-title {
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 50px;
+    height:10%;
+
+    padding: 20px;
+    
+    color: #00437C;
+    
+    text-shadow: 2.5px 2.5px 0px #FFFFFF;
+    transform: rotate(-1.5deg);
+    
+    /* Inside auto layout */
+    
+    flex: content;
+    order: 0;
+    flex-grow: 0;
+}
+
+/* Media query for smaller devices */
