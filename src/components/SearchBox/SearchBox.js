@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SearchBox.css'
 
-const SearchForm = ({ handleSearch }) => {
+const SearchBox = ({ handleSearch }) => {
 
     const [searchValue, setSearchValue] = useState('');
 
@@ -30,4 +30,4 @@ const SearchForm = ({ handleSearch }) => {
     );
 };
 
-export default SearchForm;
+export default SearchBox;

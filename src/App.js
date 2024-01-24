@@ -1,7 +1,7 @@
 import './App.css';
 import GetDataComponent from './components/VendorProducts/VendorProducts';
 import TitleBarComponent from './components/TitleBar/TitleBar';
-import SearchForm from './components/SearchBox/SearchBox';
+import SearchBox from './components/SearchBox/SearchBox';
 import React, { useState } from 'react';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <div className="bg">
       <div className="App">
         <TitleBarComponent></TitleBarComponent>
-        <SearchForm handleSearch={handleSearch}></SearchForm>
+        <SearchBox handleSearch={handleSearch}></SearchBox>
         <GetDataComponent searchValue={searchValue}></GetDataComponent>
       </div>
     </div>

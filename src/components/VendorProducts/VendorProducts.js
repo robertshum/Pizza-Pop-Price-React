@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import './VendorProducts.css';
 // import config from '../../config/config.json';
 import { generateEncodedfetchUrls } from '../../utils/util';
+import Loading from '../Loading/Loading';
 
 const GetDataComponent = ({ searchValue }) => {
 
@@ -72,13 +73,7 @@ const GetDataComponent = ({ searchValue }) => {
           ))}
         </div>
       ) : (
-        // TODO move heavy CSS components into separate file.
-        // Loading Animation.
-        // They sure love using divs
-        <div className="loading-container">
-          <div className="loading-text">Loading...</div>
-          <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        </div>
+        <Loading />
       )}
     </div>
   );
