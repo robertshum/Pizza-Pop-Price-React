@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './VendorProducts.css';
-// import config from '../../config/config.json';
 import { generateEncodedfetchUrls } from '../../utils/util';
 import Loading from '../Loading/Loading';
+import Product from '../Product/Product';
 
 const GetDataComponent = ({ searchValue }) => {
 
@@ -17,8 +17,6 @@ const GetDataComponent = ({ searchValue }) => {
         //force data to empty array using state hook.
         setData([]);
 
-        // fetchUrls.current = searchValue === '' ? generateFetchUrls(encodeURIComponent(config.default_search_value)) : generateFetchUrls(encodeURIComponent(searchValue));
-
         fetchUrls.current = generateEncodedfetchUrls(searchValue);
 
         const fetchDataArray = await Promise.all(
@@ -30,7 +28,6 @@ const GetDataComponent = ({ searchValue }) => {
             try {
               return await response.json();
             } catch (error) {
-              // Handle the JSON parsing error gracefully
               console.error('Error parsing JSON:', error);
               return null; // Return a default value or null
             }
@@ -50,7 +47,6 @@ const GetDataComponent = ({ searchValue }) => {
     fetchData();
   }, [searchValue]);
 
-
   return (
     <div>
       {data.length > 0 ? (
@@ -61,13 +57,7 @@ const GetDataComponent = ({ searchValue }) => {
                 {Object.keys(fetchUrls.current)[index]}
               </div>
               {dataArray.map((item, itemIndex) => (
-                // TODO should associate the code below as another component (like an item)
-                <a className="item-container" key={itemIndex} href={item.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                  <div className="item-container-frame">
-                    <div className="item-container-title">{item.title}</div>
-                    <div className="item-container-price">{item.price}</div>
-                  </div>
-                </a>
+                <Product item={item} itemIndex={itemIndex} />
               ))}
             </ul>
           ))}
